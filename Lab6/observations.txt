@@ -1,0 +1,9 @@
+path.png:
+
+We can clearly see the randomness in the path. At p = 0.2, the correct move has probability atleast 0.2 + (0.8)/4 = 0.4. We can see that when there are only two valid paths, the path chosen is correct in most of the cases, this is because when number of paths available is only two then probability of chosing the corrct path is 0.6. We see that at almost every 4-way crossing, the solver has taken atleast one wrong path which is what we would expect considering just 0.4 probability of chosing the correct path.
+
+plot.png:
+
+The plot is drawn at 101 points (0 to 1 (both included) with a gap of 0.01)
+
+We can see that the number of steps decreases with increase in value of p. Initially there are very steep changes but this is expected because in such a range of low value of p, the solver is very likely to take wrong paths and as a result lead to a lot of increase in the path length. As we increase p, the irregularities become much less common and the curve starts converging to the final value of 22 (number of optimal steps). I expected more number of steps for p = 0 as in this the solver choses the path uniformly randomly. If we plot this curve again on a new data then on average we should get mroe iterations for less value of p.

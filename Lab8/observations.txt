@@ -1,0 +1,23 @@
+
+
+Task4 : Comparing the different intialisation methods
+
+As we can see in the plots, when we initialise the initial_tour randomly almost all the plots are very close which is expected because they are random and hence there is a very less chance that one plot becomes very different from the other plot. More important point to note is that the starting tour length can possibly go as high as 3500 and the number of iterations taken are around 70.
+
+For the nearest-neighbour case, the different plots are quite different in behaviour. This is expected because here we greedily choose the next vertex so a different initial vertex will lead to totally different sequence of vertices, which can lead to a different convergence behavior. The effect of this is that differet starting vertices might converge to different local minimums and as we can see some initial-vertices perform worse than others. The starting tour length varies from 700 to 850 and the number of iterations are around 12-14 (for the best ones).
+
+For the mst case, there is only a single graph which starts at around 820 tour length and converges at around 700 tour length in 16 iterations.
+
+Regarding the best method, both nearest neighbour and mst are performing quite well. The random initialization is very bad as it has almost 5 times iterations to converge. One downside of the nearest neighbour is that if we unfortunately chose the wrong vertex we might end up at a worse local minima. This is not the case with mst approximation as it doesn't varies with any choice of the user and performs quite well, atleast as good as the best initial-vertex in the nearest-neighbour plot.
+
+Task6 : Comparing Task2_submit.png Task6_submit.png
+
+The graph which uses 3-opt neighbours falls faster than the graph only using 2-opt neighbours, this is expected because we are considering more neighbours and hence will go to lower values in each iteration, thus increasing the chances of reaching the global minimum faster (or possibly reaching a better global minimum). We can see that the 3-opt neighbours plot converges in around 40 iterations in most of the cases while the 2-opt one converges after 60 iterations in almost all cases. This supports our theoretical analysis. The time taken per iteration is also quite higher.
+
+Task7: comparison with task3_submit.png
+
+The pattern is same as that of task3_submit (i.e. different curves, worse convergence for some initial cities etc.) but the convergence rate is faster. The number of iterations in task 3 is around 14 while in task 7 is around 10. Also initial cities performing worse in task3 do not perform that worse here (relative to the best) as in task3_submit.png some curves got converged at a lot higher value that we see in task7_submit. The time taken per iteration is also quite higher.
+
+Task8:
+
+In these two curves we see that both are performing quite well, we see that task8 converges in one less iteration. Apart from that we see that task8 is achieving a better minimum (slightly). This is explained by same factors that I have written above, i.e. looking over more neighbours gives more oppurtunity to decrease faster and get a better minimum (however it may be possible that 3-opt neighbour scheme goes to a worse minimum but that is not the case here).The time taken per iteration is also quite higher.

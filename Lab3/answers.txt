@@ -1,0 +1,41 @@
+Aman Bansal
+160050028
+
+
+Plot Observations:
+
+The graphs are plotted for these value of number of weak_classifiers:
+1 3 5 7 9 10 13 15 17 20
+
+
+Bagging:
+The training curve does upward as expected and tends to saturate after going close to 92%. This is quite expected because using more number of classifiers will reduce the chances that any data point is misclassified.
+
+The validation curve : It increases initially and then saturates after going above 76%. This tells us that the training data is not a good representative of the validation data (or the test data). To some extent overfitting is also a reason.
+
+The test curve : We would expect the curve to remain very close to the validation curve and this is what happens. The trend is almost same as that of validation curve.
+
+Boosting:
+
+The training curve almost keeps goingupward and starts to saturate after going close to 18 classifiers. This is quite expected because as we do more and more iterations, the algorithms will try to fit more and more misclassified points and hence reducing the chance that any point will remain misclassified.
+
+The validation curve : It increases initially and then saturates after going above around 76%. This tells us that the training data is not a good representative of the validation data (or the test data). Also overfitting contributes to this to some extent.
+
+The test curve : We would expect the curve to remain very close to the validation curve and this is what happens. The trend is almost same as that of validation curve.
+
+Answer1:
+
+The accuracy of Bagging classifier is : 92.2
+The accuracy of Boosting classifier is : 91.1
+
+We see that the training accuracy of Boosting is lower in this case. However, theoretically increasing the sample length to significantly large value we can get almost 100% on train Data. In case of bagging, even if we increase the number of classifiers we don't get 100%.
+
+Theoretically, Boosting is supposed to reach 100% if given sufficient iterations while there is no such theoretical gurantee on bagging. This means that boosting has decent amount of overfitting attached to it as compared to bagging. One factor contributing to this is that training data is not representative of test data but that factor is common to both. So we conclude that boosting overfits more as compared to bagging.
+
+Answer2:
+
+True. We cannot represent the ensemble combining perceptrons with weighted majority by an equivalent single perceptron. Suppose the contribution and weights of the ith perceptron in the ensemble are alpha[i] and w[i]. Then ensemble classifies a datum according to  sign(sum_over_i{alpha[i] * sign((weights[i] . datum))}).
+
+Note that this is not a linear transform due to the presence of sign inside the outer sign function. Hence we cannot represent this equation by a single perceptron (which represents functions which are linear in the input x).
+
+We can see this by running the perceptron and boosting algorithm on the same dataset given in this assignment. While the perceptron algorithm gets an training accuracy of around 70%, boosting can be made to reach almost 100% by keeping sample length as around 1.5 of the sample length. This example clearly shows that weighted average is not equivalent to a single perceptron (otherwise perceptron would also have received almost 100% training accuracy).

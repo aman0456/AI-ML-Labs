@@ -1,0 +1,45 @@
+Submitted by :
+Aman Bansal
+160050028
+
+Task 2.1:
+
+Learning rate: 0.075
+number of hidden layers: 1
+number of nodes in each hidden layer: [6]
+batchsize: 100
+number of epochs: 30
+seedValue = 5
+
+The number of nodes in the hidden layer can be further decreased to say 3 or 4 which gives accuracy above 90% on various seedValue but also gives below 85% on some seed values (such as 3856, 23, 34). So if the question asks for a network which works on all seedValues then I found 6 to be the one (I checked a lot of seed values and this works).
+
+Task 2.2:
+
+Learning rate: 0.1
+number of hidden layers: 1
+number of nodes in each hidden layer: [2]
+batchsize: 100
+number of epochs: 30
+seedValue = 5
+The number of nodes in the hidden layer can not be further 1 as it gives less than 90% accuracy.
+
+Task 2.3:
+
+Learning rate: 0.1
+number of hidden layers: 1
+number of nodes in each hidden layer: [7]
+batchsize: 100
+number of epochs: 100
+seedValue = 5
+Keeping the number of nodes in the hidden layer below 7 doesn't give more than 90% accuracy even after large number of iterations. (I have kept the number of layers 20 being on the safe side as the network is going to be tested for different seed values).
+
+Task2.4:
+
+Learning rate: 0.1
+number of layers: 5
+number of nodes in each hidden layer: The first layer is a convolution layers which outputs a 32*9*9 matrix. Then there is a pooling layer which outputs a 32*4*4 matrix. Then a flattenLayer and then 2 fully-connected layers. The first fully connected layer outputs a vector of length 10.
+batchsize: 8
+seedValue = 5
+number of epochs: 15
+
+I tried some other networks which didn't work took a lot of time to train on my PC. This model is currently working. If we reduce the number of nodes by increasing the size of kernel or incresing strides then the network will still work. Infact if we remove one of the fully connected layer then also the network achieves 35%. However I didn't get the time to find the exact minimum values as checking one model takes a lot of time to train.s

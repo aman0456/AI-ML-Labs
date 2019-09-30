@@ -1,0 +1,6 @@
+Name : Aman Bansal
+Roll No. : 160050028
+
+Links given on the assignment webpage for understanding PPM and PGM binary format.
+
+various forums of stackoverflow.com for reading about some functionalities of python (such as finding minimum from a list and its index etc.)

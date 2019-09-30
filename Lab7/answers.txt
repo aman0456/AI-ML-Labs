@@ -1,0 +1,20 @@
+
+Task 3:
+
+We will formulate the path length in this way : we will assign every transition with an edge weight of difference in number of empty cells. This is because we want to just find a solution. Now for doing A* if we keep a heuristic like number of empty cells then this is a consistent heuristic. 
+Task 7:
+a)
+
+Using Dikstra's algorithm is exactly equivalent to doing A* search algorithm with as we will keep priority as just the path from source which is what is done in Dikstra's. So the number will be same as in case of task5:
+
+Number of nodes expanded for IIT: 80
+Number of nodes expanded for Mumbai: 26743
+
+b)
+
+Assuming the problem requires to reach any of the given multiple end-nodes:
+
+We can use this heuristic : for any state st, calculate its euclidean distance from all the end-points and take the minimum one. Lets say h1, h2 were original heuristics then min(h1, h2) is also consistent because min(h1(s) , h2(s)) - min(h1(t), h2(t)) < cost s to t. wlog, min of h1(t) and h2(t) is h1(t) then h1(s) - h1(t) < cost => min(h1(s), h2(s)) - h1(t) < cost => consistent. Hence the minimum distance heuristic is also consistent and will work for this problem.
+
+Assuming all nodes are to be visited.
+There can be no consistent heuristic for the A* graph-search in TSP problem if we want to keep our node-space the same. This is because A* graph-search converges in polynomial time (around E * log(V)) where E is number of edges in total and V is number of nodes. This means that if there is a consistent heuristic then A*-graph seach can solve TSP in polynomial time but this is not possible since TSP is NP-Hard.

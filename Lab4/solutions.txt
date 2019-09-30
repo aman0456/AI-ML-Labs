@@ -1,0 +1,82 @@
+Name: Aman Bansal
+Roll number: 160050028
+========================================
+
+
+================
+     TASK 2
+================
+
+
+1. Run your code on datasets/garden.csv, with different values of k. Looking at the performance plots, does the SSE of k-means algorithm ever increase as the iterations are made? (1 mark)
+Answer:
+
+After looking at the plot, we conclude that the SSE never increases. The SSE of k-means algorithm always decreases as iterations are made. This is because in every step what we do is we classify every point to its nearest centroid. This will definitely reduce the SSE because the term contributed by this data point in the SSE will get reduced. After this, we set the new centroids to the mean of points assigned to a particular old centroid. This again leads to reduction in the SSE as proved in class. Hence SSE error can't increase as iterations are made.
+
+3. Look at the files 3lines.png and mouse.png. Manually draw cluster boundaries around the 3 clusters visible in each file (no need to submit the hand drawn clusters). Test the k-means algorithm on the datasets datasets/3lines.csv and datasets/mouse.csv. How does the algorithm’s clustering compare with the clustering you would do by hand? Why do you think this happens? (1 mark)
+Answer:
+
+For mouse.csv:
+
+The handmade drawing classified the 3 cluster as are visible in the png file. The k-means algorithm however doesn't returns those exact clusters. It is slightly different in the sense that some point which I assigned to the middle cluster and which are close to the left(right) cluster  get classified in the left (right) cluster. This happens because of the initialisation. We randomly choose 3 points from data sets to represent the initial means. Since the middle cluster is very large that the two side clusters, for most of the seeds the three chosen initial centroids will come in that region only. Now when we will apply kmeans iterations, the point which was closer to left (right) cluster will tend to go towards left (right) cluster but also notice that some points from the middle cluster will also be closest to the left (or right)  centroid and this will cause the left and the right centroid to not go to the middle of their cluster and instead remain somewhere between the borders of left(right) and middle clusters.
+
+For 3lines.csv
+
+We can say that all the lines contain almost the same number of points. There are 2 reasons for the resulting clustering.
+
+1. Initialization : With very high probability (=7/9) we can say that there will be atleast one line which will get two of the initial centroids. This will cause the points in that line to divide between these two clusters (depending on their distance from center) and hence will cause that line to be bicolor. Now surely one of the line will be void of any centroid and hence all of the points of that line will find its nearest centroid in some other line. This will cause that centroid to shift towards this line. Since both lines are pulling this centroid, it will end up somewhere between these two lines and hence will remain in two lines. 
+
+2. Length of the line /(distance from adjacent line) ratio : We can see that this ratio is around 2 for the given data. This means that the points which are on the upper (lower) extreme of the line will prone to seeing a centroid in the top (bottom) half of the neighbour line as closer as compared to centroid in the lower (upper) half of the same line. This will cause the centroid of the neighbour line to shift towards this line and hence influencing two lines and the centroid in the lower (upper) half of this line to shift more towards the bottom(top) and hence only influencing the half of this line and in turn influencing lower (upper) half points of adjacent line.
+
+Hence we see that unless the initial points are chosen very accurately (i.e. to the centers of their corresponding line) there is a high probability that the centroids will end up influencing two lines (top or bottom half of both). Obviously there are various cases possible and I am not explaining all of them (for example the case when first line receives two centroids and third line receives one in which case the third line will be mostly one color and other two half split).
+
+I plotted 100 images with random initialisation and my answer was quite consistent with every image. For most of the initialization one color dominates over one side of the center (top or bottom) and among two or more lines. And atleast for these 100 random seeds, I didn't get any clustering matching my handmade clustering. However, if I initialise with centroid as (-4, 0), (-2, 0) and (0, 0) then I get a clustering matching exactly my handmade clustering.
+
+================
+     TASK 3
+================
+
+1. For each dataset, with kmeansplusplus initialization algorithm, report “average SSE” and "average iterations". Explain the results. (2 mark)
+Answer:
+
+Dataset     |  Initialization | Average SSE  | Average Iterations
+==================================================================
+   100.csv  |        forgy    | 8472.63311469| 		2.43
+   100.csv  |        kmeans++ | 8472.63311469|		2.0
+  1000.csv  |        forgy    | 21337462.296 |      3.28
+  1000.csv  |        kmeans++ | 19887301.0042|      3.16
+ 10000.csv  |        forgy    | 168842238.612|      21.1
+ 10000.csv  |        kmeans++ | 22323178.8625|		7.5
+
+We can clearly see that kmeans++ is performing better than forgy initialisation. For 100.csv, average SSE comes out to be the same but kmeans++ converges faster than forgy on average. For 1000.csv, kmeans++ converges faster than forgy and converges to a better solution as compared to forgy. For 10000.csv, the average SSE is an order of magnitude higher for forgy and it was almost three times slower than kmeans++.
+
+These examples show us that as the number of points increase, the difference between performace of both the initialisations goes on increasing both in terms of time taken to converge as well as the average SSE (closeness to optimal clustering). This is because forgy only chooses point randomly while kmeans++ tries to choose points which are far away from each other. Due to this forgy may choose close centroids in many cases and then even a slight perturbation in these centroids can potentially change assignment of lot of points to these clusterings and hence more iterations will be required to on average. We cannot say so for average SSE by just arguing upon closeness of choosing the centers. However, choosing close centroids can also lead to worse clustering than choosing far away centroids because when say out of three two centroids are choosen close to each other but the third one is far from both, then potentially almost half of the points will get assigned to that centroid and might remain assigned there leading to a worse convergence (3lines.csv very clearly exhibits this phenomenon).
+
+================
+  TASK 4
+================
+
+1. Can you observe from the visualization that k-medians algorithm is more robust to outliers as compared to k-means? Why do you think this happens? (1.5 marks)
+Answer:
+
+Yes, we can clearly observe this by seeing the visualized output of k-means and k-medians algorithms on the outliers dataset. When there are two outlier point which are very far away compared to the distance between normal points of the cluster, what kmeans does is that it assigns one cluster to these outlier points. This is because the large distance of the outliers dominates while calculating the mean and keeps shifting the centroid towards the outliers. This causes k-means to assign one cluster to these outliers only.
+
+In case of k-medians, we are calculating the median which is independent of the distance between the points. So even if a cluster contains the outliers, its centroid is still close to the non-outlier points. So in case of k-medians what we get is that the clusters are assigned properly for the non-outliers point and the outliers are assigned to whichever centroid they are closest to.
+
+Hence k-medians is more robust to outliers as compared to k-means.
+
+================
+  TASK 8
+================
+
+1. What do you observe as we reduce the number of clusters (k)? Answer in reference to the quality of decompressed image. (0.5 mark)
+Answer:
+
+I ran the compression and then decompression for k=2, 4, 8, 16, 32, 64. As we reduce the value of k we observe that the colors present in the decompressed file reduces. This decreases the quality of the decompressed image (in terms of how close it is to the original image and how it maintains various color features).
+
+2. You can observe that for the small number of clusters, the degree of compression (original size/compressed size) is about the same as that of when we use larger number of clusters even though we need to store lesser number of colors. Can you tell why? How can we increase this ratio in case of smaller number of clusters? [1 mark]
+Answer: 
+
+This is because even if k is small we are using the same memory to store the compressed image. We encode the representative centroid number as one byte and hence the memory we use to store the compressed image is number of pixels * (1 byte). We do this independent of k and hence compressed image is almost same for every k.
+
+However, we can do better with the following observation. Consider that the value of k = 64. In this case we see that the representative centroid number can only be between 0 and 63 (both inclusive). So we actually need only 6 bits to encode the number instead of 8. We can now concatenate these 6 bits for the whole string and divide it into continous group of 8 and write every such byte in the file (padding might be needed to make it a multiple of 8). This will decrease the size of the compressed file by a factor of (4/3). In general we can reduce the size of compressed image by a factor of 8/(log_2(k)).

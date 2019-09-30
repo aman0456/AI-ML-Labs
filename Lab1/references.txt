@@ -1,0 +1,2 @@
+https://en.wikipedia.org/wiki/Multiclass_classification
+https://www.kaggle.com/smeschke/four-shapes/home

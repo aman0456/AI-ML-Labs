@@ -1,0 +1,54 @@
+Author : Aman Bansal (160050028)
+
+Task 2:
+	
+
+Subtask 1:
+
+The following answer is based on the plot plot_iterations.png.
+
+The general nature of the plot (for both test accuracy and train accuracy) is that it starts with a very low accuracy and then increases very sharply and after seeing around 500 examples, it tends to saturate overall with some ups and downs. The analysis of the each part of the curve is as follows:
+
+The sharply increasing part:
+
+In the starting when the weights are just random (the initial weights are actually 0 but they are random with respect to the data points) the error should obviously be large. As we start seeing more and more examples and keep adjusting to them, our error should drop drastically since if we adjust according to a point then more points surrounding it should get correctly classified. The adjustment would also misclassify some previously unclassified points but the number of points which will get correctly classified will be comparatively very large because in the initial stage the classifier is very far from ideal solution and any change to accomodate correct solution will improve its performance quite a lot.
+
+The saturation with ups and downs:
+
+As our dataset is not very complex (most of the points are really separated with quite a gap between them!), small number of iterations is doing quite a good job (this explains the "very" sharp increase initially). After these initial iterations, the curve almost saturates. Note that the curve will never be able to correctly classify every point in the training set as they are not linearly separable. After this stage if we take a mis-classified point and try to fit it then we might increase or decrease the accuracy depending on the point chosen. Thats why there are ups and downs in the curve. However the curve doesn't deviate much from its mean position as if we took points in a way that the accuracy went low then we will take the mis-classified points which increase the accuracy also.
+
+Generalization:
+
+We see that the curve generalizes quite decently. The test data is generated using the same distribution and hence we generalize decently (clearly we are not overfitting as our model capacity is very close to optimal).
+
+
+Subtask 2:
+
+The following answer is based on the plot plot_training.png
+
+The plot shows that the training accuracy decreases as we increase the training set size while the test accuracy increases. If the training data is less then it will be easier for us to fit the data. The perceptron will have very few inter-mixed points (i.e. points from one gaussian mixing with points from another gaussian). This will allow the perceptron to find a better bounday between the gaussians and hence better training accuracy.
+
+The test accuracy is increasing. For small training set size, the perceptron might be fitting the data well but it will not be able to generalize well. In the test data there will be points which will be inter-mixed while the perceptron will not be able to classify decently as it was not training on such cases. For large training sets, the perceptron will get quite a lot inter-mixed points and will orient itself to perform decently in such cases too and hence will increase the test accuracy.
+
+Answer to the question:
+
+Assuming that the initial weights for each each of the binary perceptron are chosen randomly. In this case depending on the distribution of the weights, any class can be chosen. Hence expected value of accuracy of such a classifier would be 1/(number of classes).
+
+
+Task 3.1:
+
+Results:
+The accuracy for 1v1 perceptron for dataset D1.2 = 71.5
+The accuracy for 1vr perceptron for dataset D1.2 = 71.3
+
+The accuracy for 1v1 perceptron for dataset D1 = 78.8
+The accuracy for 1vr perceptron for dataset D1 = 73.8
+
+Observations:
+
+Dataset D1:
+The accuracy for 1v1 algorithm is remarkably higher than the accuracy of 1vr algorithm. This is quite expected as in case of 1v1, each of the binary perceptron is being trained on the data points corresponding to those two labels while for the case of 1vr, each binary perceptron is being trained on all the data points. As we can clearly see, the data on which single binary perceptron of 1v1 algorithms is trained will be more linearly separable in the sense that there will be less mixing of data point labeled 1 and 0 and hence will give results will better accuracy as conpared to a single binary perceptron in 1vr algorithm. This will lead to better accuracy of 1v1 algorithm.
+
+Dataset D1.2:
+
+Here also 1v1 algorithm is performing better but the difference between their performance is not significant. When we decrease the size of training set, the single binary perceptron in 1vr algorithms will see equivalent reduction in its data point and the extent of mixing in the data points will drastically reduce. The reduction in data points seen by the single binary perceptron will only be a fraction of total data point reduced and its extent of linear separability will not be as affected as it was for 1vr perceptron. This leads to claim that although such a small number of data points will decrease the performance of both the algorithms, it will also significantly decrease the performace difference between 1vr and 1v1.
